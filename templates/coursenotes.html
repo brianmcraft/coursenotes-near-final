@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if cards %}
+	{% for card in cards %}
+	<div class="card">
+	<div class="card-title">
+		<h3>{{card.title}}</h3>
+	</div>
+		<div class="card-content">
+			<div class="content">
+				<div class="content-topic">
+					{{card.content | safe}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+{% endif %}
+
+<form action="/" method="post">
+	<div class="title" id="comments">
+		<h1>Post a Comment</h1>
+		<p><span class="italic">Ask a question, suggest an improvement, or share a thought.</span></p>
+	</div>
+	<div class="label">Comment</div>
+	<div>
+		<textarea class="comment-content" placeholder="What you talkin' 'bout, Willis?" name="content" rows="3"></textarea>
+	</div>
+	<div class="label">Name</div>
+	<div>		
+		<input class="comment-identification" placeholder="Willis" type="text" name="name">
+	</div>
+	<div class="label">Email</div>
+	<div>
+		<input class="comment-identification" placeholder="you@internets.com" type="text" name="email">
+	</div>
+	<div>
+		<input type="submit" name="submit" value="Post">
+	</div>
+</form>
+
+{% endblock %}
+
+
+{% block comments %}
+
+{% if comments %}
+	{% for comment in comments %}
+	<div class="card">
+	<div class="card-title">
+		<h3>{{comment.author.name}} on {{comment.date}}</h3>
+	</div>
+		<div class="card-content">
+			<div class="content">
+				<div class="content-topic">
+					{{comment.content}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+{% endif %}
+
+{% endblock %}
